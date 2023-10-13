@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "gun-shop"
+version = "0.1.0"
+description = ""
+authors = ["Igor Ruzhilov <iruzhilov@gmail.com>"]
+readme = "README.md"
+packages = [{include = "gun_shop"}]
+
+[tool.poetry.dependencies]
+python = "3.10.5"
+alembic = {extras = ["all"], version = "^1.12.0"}
+sqlalchemy = {extras = ["all"], version = "^2.0.22"}
+pydantic = {extras = ["all"], version = "^2.4.2"}
+fastapi = {extras = ["all"], version = "^0.103.2"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
