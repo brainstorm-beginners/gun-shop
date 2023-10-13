@@ -1,64 +1,31 @@
 from pydantic import BaseModel
 
 
-from pydantic import BaseModel
-from typing import List, Optional
-
-
-class GunBase(BaseModel):
+class GunRead(BaseModel):
     name: str
     barrel_type: str
     caliber: str
     price: float
 
-
-class GunCreate(GunBase):
-    pass
-
-
-class GunUpdate(GunBase):
-    pass
+    class Config:
+        orm_mode = True
+        extra = "allow"
 
 
-class GunInDBBase(GunBase):
-    id: int
+class GunCreate(BaseModel):
+    name: str
+    barrel_type: str
+    caliber: str
+    price: float
     category_id: int
 
-    class Config:
-        orm_mode = True
 
-
-class Gun(GunInDBBase):
-    pass
-
-
-class GunInDB(GunInDBBase):
-    pass
-
-
-class CategoryBase(BaseModel):
+class CategoryRead(BaseModel):
     name: str
 
-
-class CategoryCreate(CategoryBase):
-    pass
-
-
-class CategoryUpdate(CategoryBase):
-    pass
-
-
-class CategoryInDBBase(CategoryBase):
-    id: int
-
     class Config:
-        orm_mode = True
+        extra = "allow"
 
 
-class Category(CategoryInDBBase):
-    pass
-
-
-class CategoryInDB(CategoryInDBBase):
-    guns: List[Gun] = []
-
+class CategoryCreate(BaseModel):
+    name: str

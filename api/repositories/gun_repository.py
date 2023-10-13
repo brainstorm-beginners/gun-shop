@@ -12,22 +12,21 @@ class GunRepository:
         self.session = session
 
     async def get_guns(self):
-        guns = await self.session.execute(select(Gun))
-        return guns.scalars().all()
+        result = await self.session.execute(select(Gun))
+        guns = result.scalars().all()
+        return guns
 
-    async def get_gun_by_caliber(self, caliber: str):
+    async def get_guns_by_caliber(self, caliber: str):
         try:
-            gun = await self.session.execute(select(Gun).where(caliber == Gun.caliber))
-            return gun.scalar_one()
+            result = await self.session.execute(select(Gun).where(Gun.caliber == caliber))
+            guns = result.scalars().all()
         except NoResultFound:
             raise HTTPException(status_code=404, detail="Gun not found")
+        return guns
 
     async def create_gun(self, gun: GunCreate):
         new_gun = Gun(**gun.dict())
-
         self.session.add(new_gun)
         await self.session.commit()
         await self.session.refresh(new_gun)
-
         return new_gun
-

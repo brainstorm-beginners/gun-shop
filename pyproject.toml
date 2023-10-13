@@ -12,6 +12,7 @@ alembic = {extras = ["all"], version = "^1.12.0"}
 sqlalchemy = {extras = ["all"], version = "^2.0.22"}
 pydantic = {extras = ["all"], version = "^2.4.2"}
 fastapi = {extras = ["all"], version = "^0.103.2"}
+asyncpg = "^0.28.0"
 
 
 [build-system]
