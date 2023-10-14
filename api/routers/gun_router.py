@@ -43,3 +43,19 @@ async def get_guns_by_category(category_id: int, session: AsyncSession = Depends
 
     guns_by_category = await gun_repository.get_guns_by_category(category_id)
     return guns_by_category
+
+
+@router.get("/guns/barrel_type/{barrel_type}", response_model=List[GunRead])
+async def get_guns_by_category(barrel_type: str, session: AsyncSession = Depends(get_async_session)):
+    gun_repository = GunRepository(session)
+
+    guns_by_barrel_type = await gun_repository.get_guns_by_barrel_type(barrel_type)
+    return guns_by_barrel_type
+
+
+@router.get("/guns/name/{name}", response_model=List[GunRead])
+async def get_guns_by_name(name: str, session: AsyncSession = Depends(get_async_session)):
+    gun_repository = GunRepository(session)
+
+    guns_by_name = await gun_repository.get_guns_by_name(name)
+    return guns_by_name

@@ -16,14 +16,6 @@ class GunRepository:
         guns = result.scalars().all()
         return guns
 
-    async def get_guns_by_caliber(self, caliber: str):
-        try:
-            result = await self.session.execute(select(Gun).where(Gun.caliber == caliber))
-            guns = result.scalars().all()
-        except NoResultFound:
-            raise HTTPException(status_code=404, detail="Guns not found")
-        return guns
-
     async def create_gun(self, gun: GunCreate):
         new_gun = Gun(**gun.dict())
         self.session.add(new_gun)
@@ -38,3 +30,31 @@ class GunRepository:
         except NoResultFound:
             raise HTTPException(status_code=404, detail="Guns not found")
         return guns_by_category
+
+    async def get_guns_by_caliber(self, caliber: str):
+        try:
+            result = await self.session.execute(select(Gun).where(Gun.caliber == caliber))
+            guns_by_caliber = result.scalars().all()
+        except NoResultFound:
+            raise HTTPException(status_code=404, detail="Guns not found")
+        return guns_by_caliber
+
+    async def get_guns_by_barrel_type(self, barrel_type: str):
+        try:
+            result = await self.session.execute(select(Gun).where(Gun.barrel_type == barrel_type))
+            guns_by_barrel_type = result.scalars().all()
+        except NoResultFound:
+            raise HTTPException(status_code=404, detail="Guns not found")
+        return guns_by_barrel_type
+
+    async def get_guns_by_name(self, name: str):
+        try:
+            result = await self.session.execute(select(Gun))
+            guns = result.scalars().all()
+            guns_by_name = list()
+            for gun in guns:
+                if name in gun.name:
+                    guns_by_name.append(gun)
+        except NoResultFound:
+            raise HTTPException(status_code=404, detail="Guns not found")
+        return guns_by_name
