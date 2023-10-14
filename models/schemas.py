@@ -6,6 +6,7 @@ class GunRead(BaseModel):
     barrel_type: str
     caliber: str
     price: float
+    category_id : int
 
     class Config:
         orm_mode = True
@@ -22,6 +23,7 @@ class GunCreate(BaseModel):
 
 class CategoryRead(BaseModel):
     name: str
+    id: int
 
     class Config:
         extra = "allow"

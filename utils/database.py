@@ -12,7 +12,7 @@ DATABASE_URL = f"postgresql+asyncpg://{DBConfig.db_user}:{DBConfig.db_pass}@{DBC
 
 async def create_tables():
     engine = create_async_engine(DATABASE_URL)
-    metadata.bind = engine  # bind metadata to the engine
+    metadata.bind = engine
 
     async with engine.begin() as connection:
         await connection.run_sync(metadata.create_all, bind=engine)

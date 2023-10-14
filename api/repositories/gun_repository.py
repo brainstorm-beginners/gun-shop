@@ -30,3 +30,11 @@ class GunRepository:
         await self.session.commit()
         await self.session.refresh(new_gun)
         return new_gun
+
+    async def get_guns_by_category(self, category_id: int):
+        try:
+            result = await self.session.execute(select(Gun).where(Gun.category_id == category_id))
+            guns_by_category = result.scalars().all()
+        except NoResultFound:
+            raise HTTPException(status_code=404, detail="Guns not found")
+        return guns_by_category
