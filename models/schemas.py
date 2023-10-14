@@ -6,7 +6,7 @@ class GunRead(BaseModel):
     barrel_type: str
     caliber: str
     price: float
-    category_id : int
+    category_id: int
 
     class Config:
         orm_mode = True

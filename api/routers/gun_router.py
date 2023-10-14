@@ -21,8 +21,8 @@ async def get_guns(session: AsyncSession = Depends(get_async_session)):
     return guns
 
 
-@router.get("/guns/{caliber}", response_model=List[GunRead])
-async def get_gun_by_caliber(caliber: str, session: AsyncSession = Depends(get_async_session)):
+@router.get("/guns/caliber/{caliber}", response_model=List[GunRead])
+async def get_guns_by_caliber(caliber: str, session: AsyncSession = Depends(get_async_session)):
     gun_repository = GunRepository(session)
 
     guns = await gun_repository.get_guns_by_caliber(caliber)
@@ -37,11 +37,9 @@ async def create_gun(gun: GunCreate, session: AsyncSession = Depends(get_async_s
     return new_gun
 
 
-@router.get("/guns/{category_id}", response_model=List[GunRead])
-async def get_gun_by_category(category_id: int, session: AsyncSession = Depends(get_async_session)):
+@router.get("/guns/category/{category_id}", response_model=List[GunRead])
+async def get_guns_by_category(category_id: int, session: AsyncSession = Depends(get_async_session)):
     gun_repository = GunRepository(session)
 
     guns_by_category = await gun_repository.get_guns_by_category(category_id)
     return guns_by_category
-
-

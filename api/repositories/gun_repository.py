@@ -21,7 +21,7 @@ class GunRepository:
             result = await self.session.execute(select(Gun).where(Gun.caliber == caliber))
             guns = result.scalars().all()
         except NoResultFound:
-            raise HTTPException(status_code=404, detail="Gun not found")
+            raise HTTPException(status_code=404, detail="Guns not found")
         return guns
 
     async def create_gun(self, gun: GunCreate):
