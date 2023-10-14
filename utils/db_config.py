@@ -5,17 +5,26 @@ from dotenv import load_dotenv
 from pydantic import BaseModel
 from cryptography.fernet import Fernet
 
-load_dotenv()
+import os
 
-fernet = Fernet(os.environ.get("FERNET_KEY"))
 
-DB_USER = os.environ.get("DB_USER")
-DB_PASS = fernet.encrypt(os.environ.get("DB_PASS").encode()).decode()
-DB_HOST = os.environ.get("DB_HOST")
-DB_PORT = os.environ.get("DB_PORT")
-DB_NAME = os.environ.get("DB_NAME")
+def load_env(filename):
+    with open(filename) as f:
+        for line in f:
+            if line.strip() and not line.startswith('#'):
+                key, value = line.strip().split('=', 1)
+                os.environ[key] = value
 
-DATABASE_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+
+load_env('utils/.env')
+
+fernet = Fernet(os.getenv("FERNET_KEY"))
+
+DB_USER = fernet.encrypt(os.getenv("DB_USER").encode()).decode()
+DB_PASS = fernet.encrypt(os.getenv("DB_PASS").encode()).decode()
+DB_HOST = fernet.encrypt(os.getenv("DB_HOST").encode()).decode()
+DB_PORT = fernet.encrypt(os.getenv("DB_PORT").encode()).decode()
+DB_NAME = fernet.encrypt(os.getenv("DB_NAME").encode()).decode()
 
 
 class DBConfig(BaseModel):

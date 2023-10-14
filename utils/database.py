@@ -5,9 +5,9 @@ from sqlalchemy.orm import sessionmaker
 
 from models.models import metadata
 
-from utils.db_config import DBConfig
+from utils.db_config import db_config
 
-DATABASE_URL = f"postgresql+asyncpg://{DBConfig.db_user}:{DBConfig.db_pass}@{DBConfig.db_host}:{DBConfig.db_port}/{DBConfig.db_name}"
+DATABASE_URL = f"postgresql+asyncpg://{db_config.db_user}:{db_config.db_pass}@{db_config.db_host}:{db_config.db_port}/{db_config.db_name}"
 
 
 async def create_tables():
