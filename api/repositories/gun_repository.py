@@ -1,12 +1,14 @@
+from typing import Optional, List, Any, Coroutine
+
 from fastapi import HTTPException
-from sqlalchemy import select, func
+from sqlalchemy import select, func, Result, CursorResult
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Query
 from sqlalchemy import or_
 
 from models.models import Gun
-from models.schemas import GunCreate
+from models.schemas import GunCreate, GunFilter
 
 
 class GunRepository:
@@ -19,7 +21,7 @@ class GunRepository:
         return guns
 
     async def create_gun(self, gun: GunCreate):
-        new_gun = Gun(**gun.dict())
+        new_gun = Gun(**gun.model_dump())
         self.session.add(new_gun)
         await self.session.commit()
         await self.session.refresh(new_gun)
@@ -58,44 +60,24 @@ class GunRepository:
             raise HTTPException(status_code=404, detail="Guns not found")
         return guns_by_name
 
-    async def filter_guns(self, filters: dict):
-        try:
-            query = Query(Gun)
+    async def get_guns_by_filters(
+            self,
+            gun_filter: GunFilter
+    ) -> list:
+        """
+        Get guns by filters.
 
-            filter_list = []
+        Args:
+            name: The gun name.
+            caliber: The gun caliber.
+            barrel_type: The gun barrel type.
+            category_id: The gun category ID
 
-            for key, value in filters.items():
-                if key == 'name':
-                    clean_values = [value.strip().replace(' ', '') for value in value.split(',')]
-                    name_filters = [func.replace(Gun.name, ' ', '').ilike(f"%{value.lower()}%") for value in clean_values]
-                    filter_list.extend(name_filters)
-                elif key == 'barrel_type':
-                    filter_list.append(Gun.barrel_type.in_(value))
-                elif key == 'caliber':
-                    caliber_values = [caliber.strip() for caliber in value.split(',')]
-                    caliber_filters = [Gun.caliber == caliber for caliber in caliber_values]
-                    filter_list.extend(caliber_filters)
-                elif key == 'category_id':
-                    category_ids_list = value.split(',')
+        Returns:
+            A list of guns.
+            :param gun_filter:
+        """
 
-                    category_ids_int = []
-                    for category_id in category_ids_list:
-                        try:
-                            category_id_int = int(category_id)
-                            category_ids_int.append(category_id_int)
-                        except ValueError:
-                            raise HTTPException(status_code=400, detail=f"Invalid category ID: {category_id}")
-
-                    if not category_ids_int:
-                        raise HTTPException(status_code=400, detail="Category IDs are empty")
-
-                    category_filters = [Gun.category_id == category_id for category_id in category_ids_int]
-                    filter_list.extend(category_filters)
-
-            query = query.filter(or_(*filter_list))
-
-            result = await self.session.execute(query)
-            guns = result.scalars().all()
-        except NoResultFound:
-            raise HTTPException(status_code=404, detail="Guns not found")
-        return guns
+        query = await gun_filter.filter(select(Gun))
+        result = await self.session.execute(query)
+        return result.scalars().all()

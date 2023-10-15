@@ -14,6 +14,7 @@ pydantic = {extras = ["all"], version = "^2.4.2"}
 fastapi = {extras = ["all"], version = "^0.103.2"}
 asyncpg = "^0.28.0"
 cryptography = "^41.0.4"
+fastapi-filter = "^1.0.0"
 
 
 [build-system]

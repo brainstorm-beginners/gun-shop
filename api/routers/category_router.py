@@ -4,7 +4,6 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.repositories.category_repository import CategoryRepository
-from models.models import Category
 from models.schemas import CategoryCreate, CategoryRead
 from utils.database import get_async_session
 

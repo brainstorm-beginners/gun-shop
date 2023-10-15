@@ -1,10 +1,4 @@
-import os
-from typing import Optional
-
-from dotenv import load_dotenv
-from pydantic import BaseModel
 from cryptography.fernet import Fernet
-
 import os
 
 
@@ -19,21 +13,15 @@ def load_env(filename):
 load_env('utils/.env')
 
 fernet = Fernet(os.getenv("FERNET_KEY"))
+DB_HOST_token = fernet.encrypt(b"" + os.environ["DB_HOST"].encode())
+DB_HOST = fernet.decrypt(DB_HOST_token).decode('utf-8')
+DB_NAME_token = fernet.encrypt(b"" + os.environ["DB_NAME"].encode())
+DB_NAME = fernet.decrypt(DB_NAME_token).decode('utf-8')
+DB_PASS_token = fernet.encrypt(b"" + os.environ["DB_PASS"].encode())
+DB_PASS = fernet.decrypt(DB_PASS_token).decode('utf-8')
+DB_PORT_token = fernet.encrypt(b"" + os.environ["DB_PORT"].encode())
+DB_PORT = fernet.decrypt(DB_PORT_token).decode('utf-8')
+DB_USER_token = fernet.encrypt(b"" + os.environ["DB_USER"].encode())
+DB_USER = fernet.decrypt(DB_USER_token).decode('utf-8')
 
-DB_USER = fernet.encrypt(os.getenv("DB_USER").encode()).decode()
-DB_PASS = fernet.encrypt(os.getenv("DB_PASS").encode()).decode()
-DB_HOST = fernet.encrypt(os.getenv("DB_HOST").encode()).decode()
-DB_PORT = fernet.encrypt(os.getenv("DB_PORT").encode()).decode()
-DB_NAME = fernet.encrypt(os.getenv("DB_NAME").encode()).decode()
-
-
-class DBConfig(BaseModel):
-    db_host: str
-    db_name: str
-    db_user: str
-    db_pass: Optional[str] = None
-    db_port: Optional[int] = None
-
-
-db_config = DBConfig.model_validate(os.environ)
-
+DATABASE_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"

@@ -1,10 +1,12 @@
-from typing import List
+from typing import List, Any, Coroutine
 
 from fastapi import APIRouter, Depends
+from fastapi_filter import FilterDepends
+from sqlalchemy import Result, CursorResult
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.repositories.gun_repository import GunRepository
-from models.schemas import GunCreate, GunRead
+from models.schemas import GunCreate, GunRead, GunFilter
 from utils.database import get_async_session
 from typing import Optional
 
@@ -47,7 +49,7 @@ async def get_guns_by_category(category_id: int, session: AsyncSession = Depends
 
 
 @router.get("/guns/barrel_type/{barrel_type}", response_model=List[GunRead])
-async def get_guns_by_category(barrel_type: str, session: AsyncSession = Depends(get_async_session)):
+async def get_guns_by_barrel_type(barrel_type: str, session: AsyncSession = Depends(get_async_session)):
     gun_repository = GunRepository(session)
 
     guns_by_barrel_type = await gun_repository.get_guns_by_barrel_type(barrel_type)
@@ -61,26 +63,13 @@ async def get_guns_by_name(name: str, session: AsyncSession = Depends(get_async_
     guns_by_name = await gun_repository.get_guns_by_name(name)
     return guns_by_name
 
-@router.get("/guns/search", response_model=List[GunRead])
-async def search_guns(
-        name: Optional[str] = None,
-        barrel_type: Optional[str] = None,
-        category_id: Optional[int] = None,
-        caliber: Optional[str] = None,
-        session: AsyncSession = Depends(get_async_session)
-):
+
+@router.get("/guns/by_filter/", response_model=List[GunRead])
+async def get_guns_by_filter(
+    session: AsyncSession = Depends(get_async_session),
+    gun_filter: GunFilter = FilterDepends(GunFilter),
+) -> list:
     gun_repository = GunRepository(session)
 
-    filters = {}
-    if name:
-        filters['name'] = name
-    if caliber:
-        filters['caliber'] = caliber
-    if barrel_type:
-        filters['barrel_type'] = barrel_type
-    if category_id:
-        filters['category_id'] = category_id
-
-    guns = await gun_repository.filter_guns(filters)
-    return guns
-
+    guns_by_filter = await gun_repository.get_guns_by_filters(gun_filter)
+    return [guns_by_filter]

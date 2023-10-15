@@ -1,8 +1,8 @@
-"""Add 'Gun' and 'Category' models
+"""Initialize DB after crash
 
-Revision ID: ce869bae1920
+Revision ID: f42f2151609e
 Revises: 
-Create Date: 2023-10-13 21:42:01.503746
+Create Date: 2023-10-15 16:29:27.211929
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ce869bae1920'
+revision = 'f42f2151609e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,7 +28,7 @@ def upgrade() -> None:
     op.create_table('gun',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=256), nullable=False),
-    sa.Column('barrel_type', sa.String(length=256), nullable=False),
+    sa.Column('barrel_type', sa.Enum('Rifled', 'Smoothbore', name='barrel_type'), nullable=False),
     sa.Column('caliber', sa.String(length=256), nullable=False),
     sa.Column('price', sa.Float(), nullable=False),
     sa.Column('category_id', sa.Integer(), nullable=True),
