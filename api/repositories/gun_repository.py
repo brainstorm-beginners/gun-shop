@@ -1,11 +1,9 @@
-from typing import Optional, List, Any, Coroutine
 
 from fastapi import HTTPException
-from sqlalchemy import select, func, Result, CursorResult
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import Query
 from sqlalchemy import or_
+from sqlalchemy.sql import select
 
 from models.models import Gun
 from models.schemas import GunCreate, GunFilter
@@ -78,6 +76,6 @@ class GunRepository:
             :param gun_filter:
         """
 
-        query = await gun_filter.filter(select(Gun))
+        query = select(Gun).where(gun_filter.get_filter_criteria())
         result = await self.session.execute(query)
         return result.scalars().all()

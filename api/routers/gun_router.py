@@ -1,14 +1,11 @@
-from typing import List, Any, Coroutine
+from typing import List
 
-from fastapi import APIRouter, Depends
-from fastapi_filter import FilterDepends
-from sqlalchemy import Result, CursorResult
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.repositories.gun_repository import GunRepository
 from models.schemas import GunCreate, GunRead, GunFilter
 from utils.database import get_async_session
-from typing import Optional
 
 router = APIRouter(
     tags=["Gun"],
@@ -67,9 +64,18 @@ async def get_guns_by_name(name: str, session: AsyncSession = Depends(get_async_
 @router.get("/guns/by_filter/", response_model=List[GunRead])
 async def get_guns_by_filter(
     session: AsyncSession = Depends(get_async_session),
-    gun_filter: GunFilter = FilterDepends(GunFilter),
-) -> list:
+    names: List[str] = Query(None),
+    barrelTypes: List[str] = Query(None),
+    calibers: List[str] = Query(None),
+    categories: List[int] = Query(None)
+) -> List[GunRead]:
+    gun_filter = GunFilter(
+        names=names,
+        barrelTypes=barrelTypes,
+        calibers=calibers,
+        categories=categories
+    )
     gun_repository = GunRepository(session)
 
     guns_by_filter = await gun_repository.get_guns_by_filters(gun_filter)
-    return [guns_by_filter]
+    return guns_by_filter
