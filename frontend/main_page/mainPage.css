@@ -1,18 +1,132 @@
 body {
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 header {
-    width: 100%;
+    width: 80%;
     height: max-content;
 }
 
+p {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .headerTop {
-    width: 100%;
+    width: auto;
     padding: 10px 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 
+.logoBox {
+    width: max-content;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logoImg {
+    height: 70px;
+    width: 70px;
+}
+
+.logoText {
+    padding-left: 10px;
+}
+
+.phoneNumberBox {
+    width: max-content;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.phoneIcon {
+    height: 40px;
+    width: 40px;
+}
+
+.phoneNumber {
+    padding-left: 10px;
+}
+
+.cartBox {
+    width: max-content;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #F93645;
+    border-radius: 5px;
+}
+
+.cartIcon {
+    height: 35px;
+    width: 35px;
+    background-color: #F93645;
+    padding: 10px;
+}
+
+.cartInfoText {
+    padding: 0px 10px;
+}
+
+.headerBottom {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigationMenu {
+    width: max-content;
+    height: max-content;
+    display: grid;
+    background-color: #3F3F3F;
+    color: aliceblue;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-top: 30px;
+}
+
+.navigationMenu ul {
+    padding: 0px 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigationElement {
+    width: max-content;
+    height: max-content;
+    padding: 15px 30px;
+    list-style: none;
+    margin-left: 40px;
+}
+
+.navigationElement:first {
+    margin-left: 0 !important;
+}
+
+.navigationElement:hover {
+    background-color: aliceblue;
+    color: #3F3F3F;
+}
