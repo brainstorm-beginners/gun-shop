@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 /utils/db_config.py
 /utils/
+/alembic/versions/06d5b090088a_initial.py

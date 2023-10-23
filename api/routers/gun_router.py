@@ -1,6 +1,8 @@
 from typing import List
 
 from fastapi import APIRouter, Depends, Query
+from fastapi_pagination import Page
+from fastapi_pagination import paginate
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.repositories.gun_repository import GunRepository
@@ -13,20 +15,20 @@ router = APIRouter(
 )
 
 
-@router.get("/guns/", response_model=List[GunRead])
+@router.get("/guns/", response_model=Page[List[GunRead]])
 async def get_guns(session: AsyncSession = Depends(get_async_session)):
     gun_repository = GunRepository(session)
 
     guns = await gun_repository.get_guns()
-    return guns
+    return paginate(guns)
 
 
-@router.get("/guns/caliber/{caliber}", response_model=List[GunRead])
+@router.get("/guns/caliber/{caliber}", response_model=Page[List[GunRead]])
 async def get_guns_by_caliber(caliber: str, session: AsyncSession = Depends(get_async_session)):
     gun_repository = GunRepository(session)
 
     guns = await gun_repository.get_guns_by_caliber(caliber)
-    return guns
+    return paginate(guns)
 
 
 @router.post("/guns/", response_model=GunCreate)

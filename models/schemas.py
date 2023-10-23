@@ -13,6 +13,8 @@ class GunRead(BaseModel):
     barrel_type: str
     caliber: str
     price: float
+    description: str
+    image: str
     category_id: int
 
     class Config:
@@ -25,6 +27,8 @@ class GunCreate(BaseModel):
     barrel_type: str
     caliber: str
     price: float
+    description: str
+    image: str
     category_id: int
 
 
