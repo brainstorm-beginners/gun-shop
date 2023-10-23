@@ -28,15 +28,23 @@
         <div class="headerBottom">
             <nav class="navigationMenu">
                 <ul>
-                    <li class="navigationElement"><a href="#">Главная</a></li>
-                    <li class="navigationElement"><a href="#">Каталог</a></li>
-                    <li class="navigationElement"><a href="#">Блок</a></li>
-                    <li class="navigationElement"><a href="#">О нас</a></li>
-                    <li class="navigationElement"><a href="#">Контакты</a></li>
+                    <li class="navigationElement" id="navigationElement"><a href="#">Главная</a></li>
+                    <li class="navigationElement" id="navigationElementExtendable"><a href="#">Каталог</a></li>
+                    <li class="navigationElement" id="navigationElement"><a href="#">Блок</a></li>
+                    <li class="navigationElement" id="navigationElement"><a href="#">О нас</a></li>
+                    <li class="navigationElement" id="navigationElement"><a href="#">Контакты</a></li>
                 </ul>
             </nav>
+            <div class="extendableMenu" id="extendableMenu" style="display: none;">
+                <ul>
+                    <li class="extendableMenuElement" id="extendableMenuElement"><a href="#">Штурмовые винтовки</a></li>
+                    <li class="extendableMenuElement" id="extendableMenuElement"><a href="#">Пистолеты</a></li>
+                    <li class="extendableMenuElement" id="extendableMenuElement"><a href="#">Боеприпасы</a></li>
+                </ul>
+            </div>
             <div class="searchBar">
-
+                <input class="searchBarTextBox" type="text" placeholder="Search">
+                <img class="searchIcon" id="searchIcon" src="media/searchIcon.png" alt="">
             </div>
         </div>
     </header>
