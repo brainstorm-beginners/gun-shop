@@ -1,4 +1,3 @@
-from datetime import date
 from typing import Optional
 
 from fastapi_filter.contrib.sqlalchemy import Filter

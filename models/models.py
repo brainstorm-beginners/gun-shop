@@ -1,6 +1,5 @@
-from datetime import datetime
 
-from sqlalchemy import Column, Integer, Float, String, MetaData, ForeignKey, Enum, DateTime
+from sqlalchemy import Column, Integer, Float, String, MetaData, ForeignKey, Enum
 from sqlalchemy.orm import declarative_base, relationship
 
 metadata = MetaData()
@@ -16,6 +15,8 @@ class Gun(Base):
     barrel_type = Column(Enum('Rifled', 'Smoothbore' 'Polygonal', name='barrel_type'), nullable=False)
     caliber = Column(String(256), nullable=False)
     price = Column(Float, nullable=False)
+    description = Column(String(256), nullable=False)
+    image = Column(String(256), nullable=False)
     category_id = Column(Integer, ForeignKey('gun_category.id'))
 
     category = relationship('Category', back_populates='guns')
