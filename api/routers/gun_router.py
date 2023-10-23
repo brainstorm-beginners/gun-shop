@@ -39,31 +39,31 @@ async def create_gun(gun: GunCreate, session: AsyncSession = Depends(get_async_s
     return new_gun
 
 
-@router.get("/guns/category/{category_id}", response_model=List[GunRead])
+@router.get("/guns/category/{category_id}", response_model=Page[List[GunRead]])
 async def get_guns_by_category(category_id: int, session: AsyncSession = Depends(get_async_session)):
     gun_repository = GunRepository(session)
 
     guns_by_category = await gun_repository.get_guns_by_category(category_id)
-    return guns_by_category
+    return paginate(guns_by_category)
 
 
-@router.get("/guns/barrel_type/{barrel_type}", response_model=List[GunRead])
+@router.get("/guns/barrel_type/{barrel_type}", response_model=Page[List[GunRead]])
 async def get_guns_by_barrel_type(barrel_type: str, session: AsyncSession = Depends(get_async_session)):
     gun_repository = GunRepository(session)
 
     guns_by_barrel_type = await gun_repository.get_guns_by_barrel_type(barrel_type)
-    return guns_by_barrel_type
+    return paginate(guns_by_barrel_type)
 
 
-@router.get("/guns/name/{name}", response_model=List[GunRead])
+@router.get("/guns/name/{name}", response_model=Page[List[GunRead]])
 async def get_guns_by_name(name: str, session: AsyncSession = Depends(get_async_session)):
     gun_repository = GunRepository(session)
 
     guns_by_name = await gun_repository.get_guns_by_name(name)
-    return guns_by_name
+    return paginate(guns_by_name)
 
 
-@router.get("/guns/by_filter/", response_model=List[GunRead])
+@router.get("/guns/by_filter/", response_model=Page[List[GunRead]])
 async def get_guns_by_filter(
     session: AsyncSession = Depends(get_async_session),
     names: List[str] = Query(None),
@@ -80,4 +80,4 @@ async def get_guns_by_filter(
     gun_repository = GunRepository(session)
 
     guns_by_filter = await gun_repository.get_guns_by_filters(gun_filter)
-    return guns_by_filter
+    return paginate(guns_by_filter)
