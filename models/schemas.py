@@ -1,3 +1,4 @@
+from datetime import date
 from typing import Optional
 
 from fastapi_filter.contrib.sqlalchemy import Filter
@@ -64,3 +65,13 @@ class CategoryRead(BaseModel):
 
 class CategoryCreate(BaseModel):
     name: str
+
+
+class AmmoRead(BaseModel):
+    calibers: str
+    amount: int
+
+
+class AmmoCreate(AmmoRead):
+    pass
+
