@@ -46,6 +46,7 @@ a {
 
 .logoText {
     padding-left: 10px;
+    user-select: none;
 }
 
 .phoneNumberBox {
@@ -134,6 +135,7 @@ a {
     transition: all 0.2s ease-in-out;
     border-top: 2px solid transparent;
     border-bottom: 2px solid transparent;
+    user-select: none;
 }
 
 .navigationElement:hover {
@@ -181,6 +183,7 @@ a {
     border-bottom: 2px solid transparent;
     border-radius: 5px;
     text-align: center;
+    user-select: none;
 }
 
 .extendableMenuElement:hover {
@@ -251,8 +254,10 @@ main {
     align-items: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     position: relative;
     transition: all 0.2s ease-in-out;
+    user-select: none;
 }
 
 .secondaryWeaponImage::after {
@@ -290,6 +295,7 @@ main {
     align-items: center;
     position: relative;
     transition: all 0.2s ease-in-out;
+    user-select: none;
 }
 
 .bottomWeaponImage::after {
@@ -413,6 +419,7 @@ main {
     border-radius: 10px;
     background-color: #575757;
     padding: 15px 0px;
+    user-select: none;
 }
 
 .deliveryBox h2, .giftsBox h2 {
