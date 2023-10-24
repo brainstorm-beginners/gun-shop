@@ -58,8 +58,8 @@ a {
 }
 
 .phoneIcon {
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
 }
 
 .phoneNumber {
@@ -208,4 +208,154 @@ a {
 .searchIcon {
     width: 25px;
     height: 25px;
+    z-index: 1;
+    object-fit: cover;
+}
+
+main {
+    width: 80%;
+    height: max-content;
+    margin-top: 30px;
+}
+
+.mainWeaponImage {
+    width: 80vw;
+    height: 25vw;
+    object-fit: cover;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.secondaryWeaponsBox {
+    width: 100%;
+    height: max-content;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 12.5px;
+    margin-top: 5px;
+}
+
+.secondaryWeaponImage {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.secondaryWeaponImage::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+  }
+
+.text-over-image {
+    color: aliceblue;
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0;
+    z-index: 1;
+}
+ 
+.bottomWeaponImage {
+    width: 80vw;
+    height: 20vw;
+    margin-top: 12.5px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-image: url("media/weapon6.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.bottomWeaponImage::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+
+.textBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weaponGridContainer {
+    width: 100%;
+    height: max-content;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 40px;
+    margin-top: 70px;
+}
+
+.weaponBox {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.weaponBoxImage {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.weaponBoxPrice, .weaponBoxName, .weaponBoxDescription {
+    text-align: left;
+    width: 100%;
+}
+
+.weaponBoxPrice {
+    color: #F93645;
+}
+
+.weaponBoxDescription {
+    color: grey;
+}
+
+.weaponBoxMenu {
+    width: 100%;
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.moreInfoButton {
+    height: 100%;
+    width: 80%;
+    flex-grow: 1;
+    background: #267FA6;
+    color: aliceblue;
+    border: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
