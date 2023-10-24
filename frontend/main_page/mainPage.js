@@ -27,6 +27,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
         isMenuVisible = true;
     });
 
+    setTimeout(function() {
+      menuElementExtendable.addEventListener("mouseout", function() {
+        isMenuVisible = false;
+      });
+    }, 1000);
+
     menuExtendable.addEventListener("mouseout", function() {
         isMenuVisible = false;
     });

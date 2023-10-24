@@ -82,6 +82,13 @@ a {
     width: 35px;
     background-color: #F93645;
     padding: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.cartIcon:hover {
+    cursor: pointer;
+    transform: scale(1.15);
+    border-radius: inherit;
 }
 
 .cartInfoText {
@@ -123,7 +130,7 @@ a {
     height: max-content;
     padding: 20px 30px;
     list-style: none;
-    margin-left: 40px;
+    margin-left: 2vw;
     transition: all 0.2s ease-in-out;
     border-top: 2px solid transparent;
     border-bottom: 2px solid transparent;
@@ -149,7 +156,7 @@ a {
     display: none;
     position: absolute;
     transition: all 0.2s ease-in-out;
-    top: 34%;
+    top: 33%;
     left: 52vh;
     transform: translate(-50%, -50%);
 }
@@ -213,7 +220,7 @@ a {
 }
 
 main {
-    width: 80%;
+    width: 80vw;
     height: max-content;
     margin-top: 30px;
 }
@@ -324,6 +331,8 @@ main {
     width: 100%;
     height: 250px;
     object-fit: cover;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
 .weaponBoxPrice, .weaponBoxName, .weaponBoxDescription {
@@ -358,4 +367,59 @@ main {
     border: 0;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    border: 2px solid transparent;
+}
+
+.moreInfoButton:hover {
+    cursor: pointer;
+    border: 2px solid #3F3F3F;
+    transform: scaleY(1.05);
+}
+
+.weaponBoxCartIcon {
+    height: 31px;
+    width: 31px;
+    background-color: #F93645;
+    padding: 10px;
+    transition: all 0.2s ease-in-out;
+    border: 2px solid transparent;
+}
+
+.weaponBoxCartIcon:hover {
+    cursor: pointer;
+    border: 2px solid #3F3F3F;
+    transform: scale(1.05);
+}
+
+.promoBox {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-gap: 30px;
+    margin-top: 100px;
+}
+
+.deliveryBox, .giftsBox {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #575757;
+    padding: 15px 0px;
+}
+
+.deliveryBox h2, .giftsBox h2 {
+    height: max-content;
+    color: aliceblue;
+}
+
+.promoBoxImage {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 30px;
 }
