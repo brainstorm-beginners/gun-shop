@@ -1,0 +1,367 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    width: 80%;
+    height: max-content;
+}
+
+p {
+    margin: 0;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: inherit;
+    vertical-align: middle;
+}
+
+.headerTop {
+    width: auto;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logoBox {
+    width: max-content;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logoImg {
+    height: 70px;
+    width: 70px;
+}
+
+.logoText {
+    padding-left: 10px;
+    user-select: none;
+}
+
+.phoneNumberBox {
+    width: max-content;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.phoneIcon {
+    height: 30px;
+    width: 30px;
+}
+
+.phoneNumber {
+    padding-left: 10px;
+}
+
+.cartBox {
+    width: max-content;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #F93645;
+    border-radius: 5px;
+}
+
+.cartIcon {
+    height: 35px;
+    width: 35px;
+    background-color: #F93645;
+    padding: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.cartIcon:hover {
+    cursor: pointer;
+    transform: scale(1.15);
+    border-radius: inherit;
+}
+
+.cartInfoText {
+    padding: 0px 10px;
+}
+
+.headerBottom {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.navigationMenu {
+    width: max-content;
+    height: max-content;
+    display: grid;
+    justify-content: center;
+    background-color: #3F3F3F;
+    color: aliceblue;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.navigationMenu ul {
+    padding-right: 40px;
+    padding-left: 0px;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigationElement {
+    width: max-content;
+    height: max-content;
+    padding: 20px 30px;
+    list-style: none;
+    margin-left: 2vw;
+    transition: all 0.2s ease-in-out;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    user-select: none;
+}
+
+.navigationElement:hover {
+    background-color: aliceblue;
+    color: #3F3F3F;
+    border-top: 2px solid #3F3F3F;
+    border-bottom: 2px solid #3F3F3F;
+}
+
+.extendableMenu {
+    width: max-content;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3F3F3F;
+    color: aliceblue;
+    border-radius: 10px;
+    border-radius: 10px;
+    display: none;
+    position: absolute;
+    transition: all 0.2s ease-in-out;
+    top: 33%;
+    left: 52vh;
+    transform: translate(-50%, -50%);
+}
+
+.extendableMenu ul {
+    margin: 0;
+    padding: 0px 20px 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.extendableMenuElement {
+    width: 85%;
+    height: max-content;
+    padding: 10px 20px 10px 20px;
+    margin-top: 10px;
+    list-style: none;
+    transition: all 0.2s ease-in-out;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    border-radius: 5px;
+    text-align: center;
+    user-select: none;
+}
+
+.extendableMenuElement:hover {
+    background-color: aliceblue;
+    color: #3F3F3F;
+    border-top: 2px solid #3F3F3F;
+    border-bottom: 2px solid #3F3F3F;
+}
+
+.searchBar {
+    flex-grow: 1;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    background-color: #3F3F3F;
+    color: aliceblue;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 17px 30px 17px 0px;
+}
+
+.searchBarTextBox {
+    padding: 5px;
+    background-color: #3F3F3F;
+    border: 0;
+    margin-right: 20px;
+    color: aliceblue;
+    font-size: 18px;
+}
+
+.searchIcon {
+    width: 25px;
+    height: 25px;
+    z-index: 1;
+    object-fit: cover;
+}
+
+main {
+    width: 80vw;
+    height: max-content;
+    margin-top: 80px;
+    padding-bottom: 100px;
+    display: grid;
+}
+
+.infoBox {
+    display: flex;
+    width: 80vw;
+    height: 4vw;
+    border: 5px solid black;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.infoBoxText {
+    margin-left: 32px;
+    font-weight: 500;
+    font-size: 24px;
+    font-family: Noto Sans SC;
+}
+
+.navlinkWeapon {
+    text-decoration: none;
+    color: #FF4949; 
+}
+
+.description {
+    width: 27.75vw;
+}
+
+.pistolaIconBox {
+    margin-left: 10px;
+    margin-top: 55px;
+    display: flex;
+    align-items: start;
+    justify-content: flex-start;
+}
+
+.pistolaIcon {
+    width: 25vw;
+    height: 22.3vw;
+    border: 0.841px solid #E4E4E4;
+}
+
+.title {
+    margin-left: 56px;
+    font-weight: 700;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-size: 28px;
+}
+
+.price {
+    margin-top: 10px;
+    margin-left: 56px;
+    font-weight: 700;
+    font-size: 35px;
+    color: #FF4949;
+}
+
+.addToCartBox {
+    margin-left: 55px;
+    width: 14vw;
+    height: 100%;
+}
+
+.cart-button {
+    border-radius: 5px;
+    margin-top: 16px;
+    background-color: #FF4949;
+    color: white;
+    border: none;
+    padding: 10px 13px 10px 21px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    transition: 0.5s;
+}
+
+.cart-buttonIcon {
+    margin-right: 7px;
+}
+
+.cart-button:hover {
+    border-radius: 10px;
+    transform: scale(1.1);
+}
+
+.line {
+    width: 83%;
+    height: 0.2vw;
+    background-color: #A0A0A066;
+    margin-top: 25px;
+    margin-left: 56px;
+}
+
+.descriptionText {
+    margin-left: 56px;
+    font-size: 18px;
+    font-weight: 500;
+    margin-block-start: 13px;
+    margin-block-end: 7px;
+}
+
+.text {
+    color: #8E8B8B;
+    font-weight: 700;
+    font-size: 12px;
+    margin-left: 56px;
+}
+
+.linksKindsOfGuns {
+}
+
+.kindOfGuns {
+    margin-left: 60px;
+    font-size: 32px;
+    font-weight: 500;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.lineLinks {
+    width: 83%;
+    height: 0.2vw;
+    background-color: #A0A0A066;
+    margin-top: 25px;
+    margin-left: 60px;
+    margin-block-end: 12px;
+    margin-block-start: 12px;
+}
+
+.linkToPistols {
+    text-decoration: none;
+    color: #FF4949;
+    margin-left: 60px;
+    font-size: 21px;
+}
