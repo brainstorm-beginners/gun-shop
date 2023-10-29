@@ -5,7 +5,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       menuElement.addEventListener("mouseover", function() {
         menuElement.style.cursor = "pointer";
       });
-    };
+    }
 
     let menuElement = document.getElementById("navigationElementExtendable");
     menuElement.addEventListener("mouseover", function() {
@@ -54,7 +54,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       extendableMenuElement.addEventListener("mouseover", function() {
         extendableMenuElement.style.cursor = "pointer";
       });
-    };
+    }
 
     let secondaryWeaponImage = document.querySelectorAll(".secondaryWeaponImage");
     for (let image of secondaryWeaponImage) {
@@ -66,7 +66,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         image.addEventListener("mouseout", function() {
           image.style.transform = "scale(1)";
         });
-    };
+    }
 
     let bottomWeaponImage = document.getElementById("bottomWeaponImage");
     bottomWeaponImage.addEventListener("mouseover", function() {
@@ -81,5 +81,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
       bottomWeaponImage.style.transform = "scale(1)";
       bottomWeaponImage.style.backgroundSize = "100%";
     });
+
+    window.openGunPage = function(gunId, categoryId) {
+        window.location.href = "/gun/" + categoryId + "/" + gunId;
+    }
 });
   

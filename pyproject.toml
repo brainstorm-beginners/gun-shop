@@ -15,6 +15,9 @@ fastapi = {extras = ["all"], version = "^0.103.2"}
 asyncpg = "^0.28.0"
 cryptography = "^41.0.4"
 fastapi-filter = "^1.0.0"
+jinja2 = {extras = ["all"], version = "^3.1.2"}
+python-multipart = "^0.0.6"
+greenlet = "^3.0.1"
 
 
 [build-system]

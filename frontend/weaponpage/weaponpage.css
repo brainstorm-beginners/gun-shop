@@ -267,6 +267,7 @@ main {
     width: 25vw;
     height: 22.3vw;
     border: 0.841px solid #E4E4E4;
+    object-fit: cover;
 }
 
 .title {

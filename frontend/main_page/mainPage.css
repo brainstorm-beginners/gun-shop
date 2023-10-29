@@ -286,7 +286,7 @@ main {
     margin-top: 12.5px;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
-    background-image: url("media/weapon6.jpg");
+    background-image: url("/static_main_page/media/weapon6.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

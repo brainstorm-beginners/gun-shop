@@ -64,6 +64,7 @@ class CategoryRead(BaseModel):
 
     class Config:
         extra = "allow"
+        orm_mode = True
 
 
 class CategoryCreate(BaseModel):
@@ -73,6 +74,10 @@ class CategoryCreate(BaseModel):
 class AmmoRead(BaseModel):
     calibers: str
     amount: int
+
+    class Config:
+        extra = "allow"
+        orm_mode = True
 
 
 class AmmoCreate(AmmoRead):

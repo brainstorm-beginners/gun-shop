@@ -5,31 +5,31 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="weaponpage.css">
-    <link rel="shortcut icon" href="images/logoImg.png" type="image/x-icon">
-    <script src="weaponpage.js"></script>
+    <link rel="stylesheet" href="/static_weapon_page/weaponpage.css">
+    <link rel="shortcut icon" href="/static_weapon_page/images/logoImg.png" type="image/x-icon">
+    <script src="/static_weapon_page/weaponpage.js"></script>
     <title>BRAKOSH</title>
 </head>
 <body>
     <header>
         <div class="headerTop">
             <div class="logoBox">
-                <img class="logoImg" src="images/logoImg.png" alt="">
+                <img class="logoImg" src="/static_weapon_page/images/logoImg.png" alt="">
                 <h1 class="logoText">BRAKOSH</h1>
             </div>
             <div class="phoneNumberBox">
-                <img class="phoneIcon" src="images/phoneIcon.png" alt="">
+                <img class="phoneIcon" src="/static_weapon_page/images/phoneIcon.png" alt="">
                 <h3 class="phoneNumber">+8(800)-555-35-35</h3>
             </div>
             <div class="cartBox">
-                <img class="cartIcon" src="images/cartIcon.png" alt="">
+                <img class="cartIcon" src="/static_weapon_page/images/cartIcon.png" alt="">
                 <p class="cartInfoText"><b>Корзина:</b> 0 товаров - 0 (KZT)</p>
             </div>
         </div>
         <div class="headerBottom">
             <nav class="navigationMenu">
                 <ul>
-                    <li class="navigationElement" id="navigationElement"><a class="nav-link" href="#">Главная</a></li>
+                    <li class="navigationElement" id="navigationElement"><a class="nav-link" href="/mainPage">Главная</a></li>
                     <li class="navigationElement" id="navigationElementExtendable"><a class="nav-link" href="#">Каталог</a></li>
                     <li class="navigationElement" id="navigationElement"><a class="nav-link" href="#">Блок</a></li>
                     <li class="navigationElement" id="navigationElement"><a class="nav-link" href="#">О нас</a></li>
@@ -45,41 +45,42 @@
             </div>
             <div class="searchBar">
                 <input class="searchBarTextBox" type="text" placeholder="Search">
-                <img class="searchIcon" id="searchIcon" src="images/searchIcon.png" alt="">
+                <img class="searchIcon" id="searchIcon" src="/static_main_page/media/searchIcon.png" alt="">
             </div>
         </div>
     </header>
     <main>
         <div class="infoBox">
-            <h1 class="infoBoxText"><a class = "navlinkWeapon" href="#">Главная </a>/<a class = "navlinkWeapon" href="#"> Пистолеты </a>/ GSG-5 MP-5P Replica pistol</h1>
+            <h1 class="infoBoxText"><a class = "navlinkWeapon" href="#">Главная </a>/<a class = "navlinkWeapon" href="#">
+                {{ category.name }} </a>/ {{ gun.name }}</h1>
         </div>
         <div class="pistolaIconBox">
-            <img class = "pistolaIcon" src="images/pistola.png" alt="">
+            <img class = "pistolaIcon" src="/static_main_page/media/{{ gun.image }}" alt="">
             <div class="description">
-                <h2 class="title">GSG-5 MP-5P Replica pistol</h2>
-                <p class="price">210 000 ₸</p>
+                <h2 class="title">{{ gun.name }}</h2>
+                <p class="price">{{ gun.price }}$</p>
                 <div class="addToCartBox">
                     <a class = "cart-button" href="#">
-                        <img class = "cart-buttonIcon" src="images/cartIconsmall.png" alt="">
+                        <img class = "cart-buttonIcon" src="/static_weapon_page/images/cartIconsmall.png" alt="">
                         Добавить в корзину
                     </a>
                 </div>
                 <div class="line"></div>
                 <div class="descriptionTextBox">
                     <h3 class="descriptionText">Описание</h3>
-                    <p class="text">Конечно, мы против насилия и уверены, что оружие должно использоваться только как спортивный инвентарь или как выставочный предмет. 
-                        Что ж, наш оружейный магазин — один из лучших в стране, и мы этим гордимся. Для меня большая честь предложить Вам наш товар. 
-                        Мы уверены, что вы будете удивлены нашим невероятным ассортиментом. Мы ценим и воплощаем лучшие традиции этой сферы.</p>
+                    <p class="text">
+                        {{ gun.description }}
+                    </p>
                 </div>
                 <div class="line"></div>
             </div>
             <div class="linksKindsOfGuns">
                 <h4 class="kindOfGuns">Другие виды оружия</h4>
                 <div class="lineLinks"></div>
-                <a class="linkToPistols" href="">Пистолеты</a>
-                <div class="lineLinks"></div>
-                <a class="linkToPistols" href="">Штурмовые винтовки</a>
-                <div class="lineLinks"></div>
+                {% for category in categories %}
+                    <a class="linkToPistols" href="">{{ category.name }}</a>
+                    <div class="lineLinks"></div>
+                {% endfor %}
             </div>
         </div>
     </main>

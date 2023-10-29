@@ -1,3 +1,4 @@
+from typing import Sequence
 
 from fastapi import HTTPException
 from sqlalchemy.exc import NoResultFound
@@ -17,6 +18,11 @@ class GunRepository:
         result = await self.session.execute(select(Gun))
         guns = result.scalars().all()
         return guns
+
+    async def get_gun(self, gun_id: int):
+        result = await self.session.execute(select(Gun).where(Gun.id == gun_id))
+        gun = result.scalar_one()
+        return gun
 
     async def create_gun(self, gun: GunCreate):
         new_gun = Gun(**gun.model_dump())
@@ -61,7 +67,7 @@ class GunRepository:
     async def get_guns_by_filters(
             self,
             gun_filter: GunFilter
-    ) -> list:
+    ) -> Sequence[Gun]:
         """
         Get guns by filters.
 

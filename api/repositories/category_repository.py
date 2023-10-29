@@ -16,6 +16,11 @@ class CategoryRepository:
         categories = result.scalars().all()
         return categories
 
+    async def get_category(self, category_id: int):
+        result = await self.session.execute(select(Category).where(Category.id == category_id))
+        category = result.scalar_one()
+        return category
+
     async def get_category_by_name(self, name: str):
         try:
             result = await self.session.execute(select(Category).where(Category.name == name))
