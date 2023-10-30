@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static_weapon_page/weaponpage.css">
+    <link rel="shortcut icon" href="/static_main_page/media/logoImg.png" type="image/x-icon">
+    <script src="/static_weapon_page/weaponpage.js"></script>
+    <title>BRAKOSH</title>
+</head>
+<body>
+    <header>
+        <div class="headerTop">
+            <div class="logoBox">
+                <img class="logoImg" src="/static_main_page/media/logoImg.png" alt="">
+                <h1 class="logoText">BRAKOSH</h1>
+            </div>
+            <div class="phoneNumberBox">
+                <img class="phoneIcon" src="/static_main_page/media/phoneIcon.png" alt="">
+                <h3 class="phoneNumber">+8(800)-555-35-35</h3>
+            </div>
+            <div class="cartBox">
+                <img class="cartIcon" src="/static_main_page/media/cartIcon.png" alt="">
+                <p class="cartInfoText"><b>Корзина:</b> 0 товаров - 0 (KZT)</p>
+            </div>
+        </div>
+        <div class="headerBottom">
+            <nav class="navigationMenu">
+                <ul>
+                    <li class="navigationElement" id="navigationElement"><a class="nav-link" href="/mainPage">Главная</a></li>
+                    <li class="navigationElement" id="navigationElementExtendable"><a class="nav-link" href="#">Каталог</a></li>
+                    <li class="navigationElement" id="navigationElement"><a class="nav-link" href="#">Блок</a></li>
+                    <li class="navigationElement" id="navigationElement"><a class="nav-link" href="#">О нас</a></li>
+                    <li class="navigationElement" id="navigationElement"><a class="nav-link" href="#">Контакты</a></li>
+                </ul>
+                <div class="extendableMenu" id="extendableMenu" style="display: none;">
+                    <ul>
+                        {% for category in categories %}
+                            <li class="extendableMenuElement" id="extendableMenuElement"><a onclick="openGunByCategoryPage({{ category.id }})">{{ category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </nav>
+            <form class="searchBar" action="/gun/search/">
+                <input class="searchBarTextBox" id="searchBarTextBox" type="search" name="query" placeholder="Search" autocomplete="off">
+                <button class="searchButton" id="searchIcon" type="submit"></button>
+            </form>
+        </div>
+    </header>
+    <main>
+        <div class="infoBox">
+            <h1 class="infoBoxText"><a class = "navlinkWeapon" href="#">Главная </a>/<a class = "navlinkWeapon" href="#">
+                {{ category.name }} </a>/ {{ gun.name }}</h1>
+        </div>
+        <div class="pistolaIconBox">
+            <img class = "pistolaIcon" src="/static_weapon_page/images/{{ gun.image }}" alt="">
+            <div class="description">
+                <h2 class="title">{{ gun.name }}</h2>
+                <p class="price">{{ gun.price }}$</p>
+                <div class="addToCartBox">
+                    <a class = "cart-button" href="#">
+                        <img class = "cart-buttonIcon" src="/static_main_page/media/cartIcon.png" alt="">
+                        Добавить в корзину
+                    </a>
+                </div>
+                <div class="line"></div>
+                <div class="descriptionTextBox">
+                    <h3 class="descriptionText">Описание</h3>
+                    <p class="text">
+                        {{ gun.description }}
+                    </p>
+                </div>
+                <div class="line"></div>
+            </div>
+            <div class="linksKindsOfGuns">
+                <h4 class="kindOfGuns">Другие виды оружия</h4>
+                <div class="lineLinks"></div>
+                {% for category in categories %}
+                    <a class="linkToPistols" onclick="openGunByCategoryPage({{ category.id }})">{{ category.name }}</a>
+                    <div class="lineLinks"></div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+</body>

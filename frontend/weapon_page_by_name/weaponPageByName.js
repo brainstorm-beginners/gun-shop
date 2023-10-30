@@ -56,32 +56,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
       });
     }
 
-    let secondaryWeaponImage = document.querySelectorAll(".secondaryWeaponImage");
-    for (let image of secondaryWeaponImage) {
-        image.addEventListener("mouseover", function() {
-        image.style.cursor = "pointer";
-        image.style.transform = "scale(1.05)";
-        });
-
-        image.addEventListener("mouseout", function() {
-          image.style.transform = "scale(1)";
-        });
-    }
-
-    let bottomWeaponImage = document.getElementById("bottomWeaponImage");
-    bottomWeaponImage.addEventListener("mouseover", function() {
-      bottomWeaponImage.style.cursor = "pointer";
-      bottomWeaponImage.style.transform = "scale(1.015)";
-      bottomWeaponImage.style.transition = "all 0.3s ease-in-out";
-      bottomWeaponImage.style.backgroundSize = "105%";
-    });
-
-    bottomWeaponImage.addEventListener("mouseout", function() {
-      bottomWeaponImage.style.transition = "all 0.3s ease-in-out";
-      bottomWeaponImage.style.transform = "scale(1)";
-      bottomWeaponImage.style.backgroundSize = "100%";
-    });
-
     window.openGunPage = function(gunId, categoryId) {
         window.location.href = "/gun/" + categoryId + "/" + gunId;
     }
@@ -92,7 +66,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     window.searchGun = function () {
         let searchText = document.getElementById('searchBarTextBox').value;
-        window.location.href = "/gun/search/" + searchText;
+        window.location.href = "/gun/" + searchText;
     }
 });
-  

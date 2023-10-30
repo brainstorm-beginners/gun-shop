@@ -1,4 +1,12 @@
 window.addEventListener("DOMContentLoaded", (event) => {
+    window.openGunPage = function(gunId, categoryId) {
+        window.location.href = "/gun/" + categoryId + "/" + gunId;
+    }
+
+    window.openGunByCategoryPage = function(categoryId) {
+        window.location.href = "/gun/" + categoryId;
+    }
+
     // 'navigationMenu' elements' hover-pointer effect
     let menuElements = document.querySelectorAll(".navigationElement");
     for (let menuElement of menuElements) {
@@ -81,18 +89,4 @@ window.addEventListener("DOMContentLoaded", (event) => {
       bottomWeaponImage.style.transform = "scale(1)";
       bottomWeaponImage.style.backgroundSize = "100%";
     });
-
-    window.openGunPage = function(gunId, categoryId) {
-        window.location.href = "/gun/" + categoryId + "/" + gunId;
-    }
-
-    window.openGunByCategoryPage = function(categoryId) {
-        window.location.href = "/gun/" + categoryId;
-    }
-
-    window.searchGun = function () {
-        let searchText = document.getElementById('searchBarTextBox').value;
-        window.location.href = "/gun/search/" + searchText;
-    }
 });
-  

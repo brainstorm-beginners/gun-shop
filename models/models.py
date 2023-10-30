@@ -1,3 +1,4 @@
+import enum
 
 from sqlalchemy import Column, Integer, Float, String, MetaData, ForeignKey, Enum
 from sqlalchemy.orm import declarative_base, relationship
@@ -12,7 +13,7 @@ class Gun(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(256), nullable=False)
-    barrel_type = Column(Enum('Rifled', 'Smoothbore' 'Polygonal', name='barrel_type'), nullable=False)
+    barrel_type = Column(Enum('Rifled', 'Smoothbore', 'Polygonal', name='barrel_type'), nullable=False)
     caliber = Column(String(256), nullable=False)
     price = Column(Float, nullable=False)
     description = Column(String(256), nullable=False)

@@ -21,6 +21,14 @@ async def get_categories(session: AsyncSession = Depends(get_async_session)):
     return categories
 
 
+@router.get("/categories/{category_id}", response_model=CategoryRead)
+async def get_category(category_id: int, session: AsyncSession = Depends(get_async_session)):
+    category_repository = CategoryRepository(session)
+
+    category = await category_repository.get_category(category_id)
+    return category
+
+
 @router.post("/categories/", response_model=CategoryCreate)
 async def create_category(category: CategoryCreate, session: AsyncSession = Depends(get_async_session)):
     category_repository = CategoryRepository(session)
