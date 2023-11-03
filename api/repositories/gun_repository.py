@@ -3,7 +3,7 @@ from typing import Sequence
 from fastapi import HTTPException
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import or_
+from sqlalchemy import or_, func, text
 from sqlalchemy.sql import select
 
 from models.models import Gun
@@ -57,8 +57,13 @@ class GunRepository:
 
     async def get_guns_by_name(self, names: str):
         try:
-            query = select(Gun).where(or_(*[Gun.name.ilike(f"%{name}%") for name in names]))
-            result = await self.session.execute(query)
+            names = names.split()
+
+            query = select(Gun, func.similarity(Gun.name, text(':names')).label('similarity')). \
+                where(or_(*[Gun.name.ilike(f"%{name}%") for name in names])). \
+                order_by(text('similarity DESC'))
+
+            result = await self.session.execute(query, {'names': ' '.join(names)})
             guns_by_name = result.scalars().all()
         except NoResultFound:
             raise HTTPException(status_code=404, detail="Guns not found")
