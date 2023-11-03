@@ -22,8 +22,8 @@
                 <h3 class="phoneNumber">+8(800)-555-35-35</h3>
             </div>
             <div class="cartBox">
-                <img class="cartIcon" src="/static_main_page/media/cartIcon.png" alt="">
-                <p class="cartInfoText"><b>Корзина:</b> 0 товаров - 0 (KZT)</p>
+                <img class="cartIcon" src="/static_main_page/media/cartIcon.png" alt="" onclick="renderCart()">
+                <p class="cartInfoText"><b>Корзина:</b> 0 товаров - 0$</p>
             </div>
         </div>
         <div class="headerBottom">
@@ -50,6 +50,17 @@
         </div>
     </header>
     <main>
+        <div class="cart">
+            <div class="cart-header">
+            </div>
+            <ul class="cart-items">
+            </ul>
+            <div class="cartButtonsBox">
+                <button id="clearCartButton">ИЛИ ОЧИСТИТЬ КОРЗИНУ</button>
+                <button id="buyButton">ЗАКАЗАТЬ</button>
+            </div>
+        </div>
+
         <h1 style="margin-top: 100px;">{{ category.name }}</h1>
         <div class="weaponGridContainer">
             {% for gun in guns %}
@@ -62,7 +73,7 @@
                 </p>
                 <div class="weaponBoxMenu">
                     <button class="moreInfoButton" type="button" onclick="openGunPage({{gun.id}}, {{gun.category_id}})">ПОДРОБНЕЕ</button>
-                    <img class="weaponBoxCartIcon" style="border-top-right-radius: 5px; border-bottom-right-radius: 5px;" src="/static_main_page/media/cartIcon.png" alt="">
+                    <img class="weaponBoxCartIcon" style="border-top-right-radius: 5px; border-bottom-right-radius: 5px;" src="/static_main_page/media/cartIcon.png" alt=""  onclick="addItemToCart({{gun.id}}, '{{gun.image}}', '{{gun.price}}', '{{gun.name}}', this.id)">
                 </div>
             </div>
             {% endfor %}

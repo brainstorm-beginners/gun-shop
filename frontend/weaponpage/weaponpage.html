@@ -22,8 +22,8 @@
                 <h3 class="phoneNumber">+8(800)-555-35-35</h3>
             </div>
             <div class="cartBox">
-                <img class="cartIcon" src="/static_main_page/media/cartIcon.png" alt="">
-                <p class="cartInfoText"><b>Корзина:</b> 0 товаров - 0 (KZT)</p>
+                <img class="cartIcon" src="/static_main_page/media/cartIcon.png" alt="" onclick="renderCart()">
+                <p class="cartInfoText"><b>Корзина:</b> 0 товаров - 0$</p>
             </div>
         </div>
         <div class="headerBottom">
@@ -50,8 +50,17 @@
         </div>
     </header>
     <main>
+        <div class="cart">
+            <div class="cart-header">
+            </div>
+            <ul class="cart-items">
+            </ul>
+            <div class="cartButtonsBox">
+            </div>
+        </div>
+
         <div class="infoBox">
-            <h1 class="infoBoxText"><a class = "navlinkWeapon" href="#">Главная </a>/<a class = "navlinkWeapon" href="#">
+            <h1 class="infoBoxText"><a class = "navlinkWeapon" href="#">Главная </a>/<a class = "navlinkWeapon" onclick="openGunByCategoryPage({{ category.id }})">
                 {{ category.name }} </a>/ {{ gun.name }}</h1>
         </div>
         <div class="pistolaIconBox">
@@ -59,7 +68,7 @@
             <div class="description">
                 <h2 class="title">{{ gun.name }}</h2>
                 <p class="price">{{ gun.price }}$</p>
-                <div class="addToCartBox">
+                <div class="addToCartBox" onclick="addItemToCart({{gun.id}}, '{{gun.image}}', '{{gun.price}}', '{{gun.name}}', this.id)">
                     <a class = "cart-button" href="#">
                         <img class = "cart-buttonIcon" src="/static_main_page/media/cartIcon.png" alt="">
                         Добавить в корзину

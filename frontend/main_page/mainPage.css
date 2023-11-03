@@ -152,14 +152,17 @@ a {
     justify-content: center;
     align-items: center;
     background-color: #3F3F3F;
+    border: 2px solid aliceblue;
     color: aliceblue;
-    border-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     display: none;
     position: absolute;
     transition: all 0.2s ease-in-out;
-    top: 200%;
+    top: 195%;
     left: 32%;
     transform: translate(-50%, -50%);
+    z-index: 2;
 }
 
 .extendableMenu ul {
@@ -239,7 +242,157 @@ main {
     height: max-content;
     margin-top: 30px;
     padding-bottom: 100px;
+    z-index: 1;
 }
+
+.closeCartButton {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+}
+
+.closeCartButton:hover {
+    cursor: pointer;
+}
+
+.closeCartButton:hover .verticalLine {
+    background-color: red;
+}
+
+.closeCartButton:hover .horizontalLine {
+    background-color: red;
+}
+
+.verticalLine {
+    position: absolute;
+    height: 50px;
+    width: 2px;
+    background-color: #3F3F3F;
+    left: 48%;
+    transform: rotate(45deg);
+    transition: all 0.2s ease-in-out;
+}
+
+.horizontalLine {
+    position: absolute;
+    height: 2px;
+    width: 50px;
+    background-color: #3F3F3F;
+    top: 48%;
+    transform: rotate(45deg);
+    transition: all 0.2s ease-in-out;
+}
+
+.cart {
+    position: fixed;
+    display: block;
+    width: 40vw;
+    min-height: 100%;
+    height: auto;
+    z-index: 5;
+    max-height: 100vh;
+    right: -100%;
+    top: 0;
+    background-color: aliceblue;
+    border-left: 2px solid #3F3F3F;
+    transition: right 1s 0s;
+    padding: 40px;
+}
+  
+.cart.active {
+    min-height: 100%;
+    height: auto;
+    max-height: 100vh;
+    z-index: 5;
+    right: 0;
+    transition: right 1s;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.cart-items {
+    max-width: 100%;
+    height: max-content;
+    padding: 0;
+}
+
+.cart-item {
+    list-style-type: none;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    border: 2px solid #3F3F3F;
+    padding: 0px 20px;
+    margin-top: 30px;
+}
+
+.cart-item img {
+    height: 180px;
+    width: 180px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.totalSumBox {
+    font-family: 'Raleway', sans-serif;
+    margin-top: 50px;
+    width: 100%;
+    height: max-content;
+    border-radius: 10px;
+    border: 2px solid #3F3F3F;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.cartButtonsBox {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-bottom: 80px;
+    margin-top: 50px;
+}
+
+#clearCartButton {
+    width: 30%;
+    height: max-content;
+    font-family: 'Raleway', sans-serif;
+    color: red;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 2px solid red;
+    transition: all 0.2s ease-in-out;
+}
+
+#clearCartButton:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+#buyButton {
+    width: 65%;
+    font-family: 'Raleway', sans-serif;
+    color: green;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 2px solid green;
+    transition: all 0.2s ease-in-out;
+}
+
+#buyButton:hover {
+    cursor: pointer;
+    transform: scale(1.035);
+}
+
 
 .mainWeaponImage {
     width: 80vw;
