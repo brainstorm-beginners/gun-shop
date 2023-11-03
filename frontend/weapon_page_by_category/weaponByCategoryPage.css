@@ -4,10 +4,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: aliceblue;
 }
 
 header {
-    width: 80%;
+    width: auto;
     height: max-content;
 }
 
@@ -97,7 +98,7 @@ a {
 }
 
 .headerBottom {
-    width: auto;
+    width: 80vw;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -536,6 +537,7 @@ main {
     justify-content: center;
     align-items: center;
     margin-top: 30px;
+    position: relative;
 }
 
 .moreInfoButton {
@@ -569,6 +571,16 @@ main {
     cursor: pointer;
     border: 2px solid #3F3F3F;
     transform: scale(1.05);
+}
+
+.plusOne {
+    opacity: 0;
+    color: red;
+    width: 20px;
+    height: 20px;
+    transition: all 1s ease-in-out;
+    position: absolute;
+    right: -30px;
 }
 
 .promoBox {

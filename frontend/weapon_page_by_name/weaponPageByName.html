@@ -73,6 +73,7 @@
                 <div class="weaponBoxMenu">
                     <button class="moreInfoButton" type="button" onclick="openGunPage({{gun.id}}, {{gun.category_id}})">ПОДРОБНЕЕ</button>
                     <img class="weaponBoxCartIcon" style="border-top-right-radius: 5px; border-bottom-right-radius: 5px;" src="/static_main_page/media/cartIcon.png" alt=""  onclick="addItemToCart({{gun.id}}, '{{gun.image}}', '{{gun.price}}', '{{gun.name}}', this.id)">
+                    <span class="plusOne" id="plusOne-{{gun.id}}">+1</span>
                 </div>
             </div>
             {% endfor %}

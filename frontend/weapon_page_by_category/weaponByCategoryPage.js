@@ -92,6 +92,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
     return cart.items.reduce((sum, item) => sum + item.quantity * item.price, 0);
   };
 
+  function showPlusOne(element) {
+    element.style.opacity = "1";
+    setTimeout(function() {
+      element.style.opacity = "0";
+    }, 1000);
+  }   
+
   window.addItemToCart = function(productId, productImage, productPrice, productName, HTMLelementId) {
     const cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : { items: [] };
   
@@ -116,7 +123,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
   
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    document.querySelector(".cartInfoText").innerHTML = `<b>Корзина:</b> ${getCartQuantity()} товаров - ${getCartTotal()}$`
+    document.querySelector(".cartInfoText").innerHTML = `<b>Корзина:</b> ${getCartQuantity()} товаров - ${getCartTotal()}$`;
+
+    showPlusOne(document.getElementById(`plusOne-${productId}`));
   };
   
   document.querySelector(".cartInfoText").innerHTML = `<b>Корзина:</b> ${getCartQuantity()} товаров - ${getCartTotal()}$`
