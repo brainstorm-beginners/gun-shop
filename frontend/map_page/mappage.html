@@ -5,10 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/static_weapon_by_name/weaponPageByName.css">
+    <link rel="stylesheet" href="/static_map_page/mappage.css">
     <link rel="shortcut icon" href="/static_main_page/media/logoImg.png" type="image/x-icon">
-    <script src="/static_weapon_by_name/weaponPageByName.js"></script>
+    <script src="/static_map_page/mappage.js"></script>
     <title>BRAKOSH</title>
+    <script src="https://api-maps.yandex.ru/v3/?apikey=2bdf697e-312b-4ebc-a310-689e12b27f13&lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
     <header>
@@ -23,7 +24,7 @@
             </div>
             <div class="cartBox">
                 <img class="cartIcon" src="/static_main_page/media/cartIcon.png" alt="" onclick="renderCart()">
-                <p class="cartInfoText"><b>Корзина:</b> 0 товаров - 0$</p>
+                <p class="cartInfoText"><b>Корзина:</b> 0 товаров - 0 (KZT)</p>
             </div>
         </div>
         <div class="headerBottom">
@@ -36,12 +37,12 @@
                     <li class="navigationElement" id="navigationElement"><a href="/map">Контакты</a></li>
                 </ul>
                 <div class="extendableMenu" id="extendableMenu" style="display: none;">
-                    <ul>
-                        {% for category in categories %}
-                            <li class="extendableMenuElement" id="extendableMenuElement"><a onclick="openGunByCategoryPage({{ category.id }})">{{ category.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
+                <ul>
+                    {% for category in categories %}
+                        <li class="extendableMenuElement" id="extendableMenuElement"><a onclick="openGunByCategoryPage({{ category.id }})">{{ category.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
             </nav>
             <form class="searchBar" action="/gun/search/">
                 <input class="searchBarTextBox" id="searchBarTextBox" type="search" name="query" placeholder="Search" autocomplete="off">
@@ -56,28 +57,33 @@
             <ul class="cart-items">
             </ul>
             <div class="cartButtonsBox">
-                <button id="clearCartButton">ИЛИ ОЧИСТИТЬ КОРЗИНУ</button>
-                <button id="buyButton">ЗАКАЗАТЬ</button>
             </div>
         </div>
 
-        <div class="weaponGridContainer">
-            {% for gun in guns %}
-                <div class="weaponBox">
-                <img class="weaponBoxImage" src="/static_weapon_page/images/{{ gun.image }}" alt="">
-                <h2 class="weaponBoxPrice">{{ gun.price }}$</h2>
-                <h3 class="weaponBoxName">{{ gun.name }}</h3>
-                <p class="weaponBoxDescription">
-                    {{ gun.description }}
-                </p>
-                <div class="weaponBoxMenu">
-                    <button class="moreInfoButton" type="button" onclick="openGunPage({{gun.id}}, {{gun.category_id}})">ПОДРОБНЕЕ</button>
-                    <img class="weaponBoxCartIcon" style="border-top-right-radius: 5px; border-bottom-right-radius: 5px;" src="/static_main_page/media/cartIcon.png" alt=""  onclick="addItemToCart({{gun.id}}, '{{gun.image}}', '{{gun.price}}', '{{gun.name}}', this.id)">
-                    <span class="plusOne" id="plusOne-{{gun.id}}">+1</span>
-                </div>
+        <div class="infoBox">
+            <h1 class="infoBoxText"><a class = "navlinkBack" href="#">Главная </a><a>/ Контакты</a></h1>
+        </div>
+        <p class="onmapText">Наши контакты</p>
+        <div class="line"></div>
+        <div class="contactBox">
+            <div class="imgbox">
+                <img src="/static_map_page/media/phone 3.png" alt="" class="imgphone">
             </div>
-            {% endfor %}
+            <div class="phonetextBox">
+                <p>+8 800-555-35-35</p>
+                <p>+7 855-505-35-55</p>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div>
+            <h2 class="socialmediaText">Наши соцсети</h2>
+        </div>
+        <div class="line1"></div>
+        <div class="socialmediaBox">
+            <img src="/static_map_page/media/twitter (1) 2.png" alt="" class="socialmediaimg">
+            <img src="/static_map_page/media/facebook 2.png" alt="" class="socialmediaimg1">
+            <img src="/static_map_page/media/whatsapp 2.png" alt="" class="socialmediaimg1">
+            <img src="/static_map_page/media/telegram 2.png" alt="" class="socialmediaimg1">
         </div>
     </main>
 </body>
-</html>

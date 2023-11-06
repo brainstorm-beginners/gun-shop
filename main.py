@@ -47,6 +47,10 @@ app.mount("/static_weapon_by_category", StaticFiles(directory="frontend/weapon_p
 app.mount("/static_weapon_by_name", StaticFiles(directory="frontend/weapon_page_by_name"), name="weaponPageByName")
 app.mount("/static_admin_form_page", StaticFiles(directory="frontend/admin_register_form_page"),
           name="admin_register_form")
+app.mount("/static_about_us_page", StaticFiles(directory="frontend/about_us"),
+          name="aboutuspage")
+app.mount("/static_map_page", StaticFiles(directory="frontend/map_page"),
+          name="mappage")
 
 
 @app.get("/mainPage")
@@ -130,7 +134,30 @@ async def get_weapons_by_name_page(
     return HTMLResponse(content=data)
 
 
-add_pagination(app)
+@app.get("/about_us")
+async def get_about_us_page(request: Request, categories: List[CategoryRead] = Depends(get_categories)):
+    about_us_template = Environment(loader=FileSystemLoader('.')).get_template(
+        'frontend/about_us/aboutuspage.html')
+
+    context = {
+        'categories': categories
+    }
+
+    data = about_us_template.render(context)
+    return HTMLResponse(content=data)
+
+
+@app.get("/map")
+async def get_map_page(request: Request, categories: List[CategoryRead] = Depends(get_categories)):
+    map_template = Environment(loader=FileSystemLoader('.')).get_template(
+        'frontend/map_page/mappage.html')
+
+    context = {
+        'categories': categories
+    }
+
+    data = map_template.render(context)
+    return HTMLResponse(content=data)
 
 if __name__ == '__main__':
     uvicorn.run(app, host='localhost', port=8000)
