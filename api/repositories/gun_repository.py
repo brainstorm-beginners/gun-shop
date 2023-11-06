@@ -5,9 +5,10 @@ from sqlalchemy.exc import NoResultFound
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import or_, func, text
 from sqlalchemy.sql import select
+from starlette import status
 
 from models.models import Gun
-from models.schemas import GunCreate, GunFilter
+from models.schemas import GunCreate, GunFilter, GunUpdate
 
 
 class GunRepository:
@@ -30,6 +31,28 @@ class GunRepository:
         await self.session.commit()
         await self.session.refresh(new_gun)
         return new_gun
+
+    async def delete_gun(self, gun_id: int):
+        gun = await self.get_gun(gun_id)
+
+        if gun is None:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+
+        await self.session.delete(gun)
+        await self.session.commit()
+        return gun
+
+    async def update_gun(self, gun_id: int, gun: GunUpdate):
+        gun = await self.get_gun(gun_id)
+
+        if gun is None:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+
+        gun.update_fields(**gun.model_dump())
+
+        await self.session.commit()
+        await self.session.refresh(gun)
+        return gun
 
     async def get_guns_by_category(self, category_id: int):
         try:

@@ -19,22 +19,16 @@ router = APIRouter(
 
 
 @router.get("/users/{username}", response_model=UserRead)
-async def get_user_by_username(username: str, session: AsyncSession = Depends(get_async_session)):
+async def get_user_by_username(username: str, session: AsyncSession = Depends(get_async_session), current_user: User = Depends(get_current_user)):
     auth_repository = AuthRepository(session)
 
     user = await auth_repository.get_user_by_username(username)
     return user
 
 
-@router.get("/users/me")
-async def read_users_me(
-    current_user: Annotated[User, Depends(get_current_user)]
-):
-    return current_user
-
-
 @router.post("/token", response_model=Token)
-async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), session: AsyncSession = Depends(get_async_session)):
+async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(),
+                                 session: AsyncSession = Depends(get_async_session)):
     auth_repository = AuthRepository(session)
 
     user = await auth_repository.authenticate_user(form_data.username, form_data.password)
@@ -52,7 +46,8 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
 
 
 @router.post("/register", response_model=User)
-async def register_user(user: User, session: AsyncSession = Depends(get_async_session)):
+async def register_user(user: User, session: AsyncSession = Depends(get_async_session),
+                        current_user: User = Depends(get_current_user)):
     auth_repository = AuthRepository(session)
     db_user = await auth_repository.get_user_by_username(user.username)
     if db_user:

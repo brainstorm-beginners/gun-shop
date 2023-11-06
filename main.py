@@ -6,7 +6,6 @@ from fastapi_pagination import add_pagination
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.repositories.gun_repository import GunRepository
-from api.routers.ammo_router import router as ammo_router
 from api.routers.gun_router import router as gun_router, get_gun, get_guns_by_category
 from api.routers.category_router import router as category_router, get_category
 from api.routers.auth_router import router as auth_router
@@ -33,7 +32,6 @@ app = FastAPI(
 
 app.include_router(gun_router)
 app.include_router(category_router)
-app.include_router(ammo_router)
 app.include_router(auth_router)
 
 

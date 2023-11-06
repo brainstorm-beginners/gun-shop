@@ -2,9 +2,10 @@ from fastapi import HTTPException
 from sqlalchemy import select
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy.ext.asyncio import AsyncSession
+from starlette import status
 
 from models.models import Category
-from models.schemas import CategoryCreate
+from models.schemas import CategoryCreate, CategoryUpdate
 
 
 class CategoryRepository:
@@ -35,3 +36,27 @@ class CategoryRepository:
         await self.session.commit()
         await self.session.refresh(new_category)
         return new_category
+
+    async def delete_category(self, category_id: int):
+        category = await self.get_category(category_id)
+
+        if category is None:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+
+        await self.session.delete(category)
+        await self.session.commit()
+        return category
+
+    async def update_category(self, category_id: int, category: CategoryUpdate):
+        category = await self.get_category(category_id)
+
+        if category is None:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+
+        category.update_fields(**category.dict())
+
+        await self.session.commit()
+        await self.session.refresh(category)
+        return category
+
+

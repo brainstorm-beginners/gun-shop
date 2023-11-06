@@ -54,6 +54,16 @@ class GunCreate(BaseModel):
     category_id: int
 
 
+class GunUpdate(BaseModel):
+    name: str
+    barrel_type: str
+    caliber: str
+    price: float
+    description: str
+    image: str
+    category_id: int
+
+
 class GunFilter(Filter):
     name__in: Optional[list[str]] = Field(alias="names")
     barrel_type__in: Optional[list[str]] = Field(alias="barrelTypes")
@@ -88,15 +98,10 @@ class CategoryRead(BaseModel):
         extra = "allow"
 
 
+class CategoryUpdate(BaseModel):
+    name: str
+    id: int
+
+
 class CategoryCreate(BaseModel):
     name: str
-
-
-class AmmoRead(BaseModel):
-    calibers: str
-    amount: int
-
-
-class AmmoCreate(AmmoRead):
-    pass
-
