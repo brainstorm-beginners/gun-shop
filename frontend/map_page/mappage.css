@@ -272,3 +272,56 @@ main {
     width: 72vw;
     height: 33vw;
 }
+
+.contactBox {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.imgphone {
+    width: 4vw;
+    height: 4vw;
+    margin-right: 1vw;
+}
+
+.phonetextBox {
+    color: #949494;
+    font-family: Noto Sans SC;
+    font-size: 38px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.772px;
+}
+
+.socialmediaText {
+    color: #000;
+    font-family: Inter;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.line1 {
+    width: 100%;
+    height: 0.2vw;
+    background-color: #A0A0A066; 
+}
+
+.socialmediaBox {
+    margin-top: 30px;
+}
+
+.socialmediaimg1 {
+    margin-left: 20px;
+    width: 5vw;
+    height: 5vw;
+}
+
+.socialmediaimg {
+    margin-left: 10px;
+    width: 5vw;
+    height: 5vw;
+}

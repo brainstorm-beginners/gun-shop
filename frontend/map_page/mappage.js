@@ -83,22 +83,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
 });
 
-initMap();
+ymaps.ready(init);
 
-        async function initMap() {
-            await ymaps3.ready;
+function init() {
+  var myMap = new ymaps.Map("map", {
+    center: [55.755814, 37.617635], // Координаты центра карты
+    zoom: 10, // Масштаб карты
+  });
 
-            const {YMap, YMapDefaultSchemeLayer} = ymaps3;
+  // Добавьте метку на карту (пример)
+  var myPlacemark = new ymaps.Placemark([55.755814, 37.617635], {
+    hintContent: 'Мы здесь!',
+    balloonContent: 'Это наш офис!',
+  });
 
-            const map = new YMap(
-                document.getElementById('map'),
-                {
-                    location: {
-                        center: [37.588144, 55.733842],
-                        zoom: 10
-                    }
-                }
-            );
-
-            map.addChild(new YMapDefaultSchemeLayer());
-        }
+  myMap.geoObjects.add(myPlacemark);
+}
