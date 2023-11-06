@@ -1,10 +1,20 @@
 import enum
 
-from sqlalchemy import Column, Integer, Float, String, MetaData, ForeignKey, Enum
+from sqlalchemy import Column, Integer, Float, String, MetaData, ForeignKey, Enum, Boolean
 from sqlalchemy.orm import declarative_base, relationship
 
 metadata = MetaData()
 Base = declarative_base(metadata=metadata)
+
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String, unique=True, index=True)
+    hashed_password = Column(String)
+    email = Column(String, unique=True, index=True)
+    is_admin = Column(Boolean, default=True)
 
 
 class Gun(Base):

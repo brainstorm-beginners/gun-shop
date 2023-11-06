@@ -1,12 +1,11 @@
 from typing import List, Any, Coroutine, Sequence
 
 from fastapi import APIRouter, Depends, Query
-from fastapi_pagination import Page
-from fastapi_pagination.ext.sqlalchemy import paginate
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from api.auth import get_current_user
 from api.repositories.gun_repository import GunRepository
-from models.models import Gun
+from models.models import Gun, User
 from models.schemas import GunCreate, GunRead, GunFilter
 from utils.database import get_async_session
 
@@ -58,7 +57,7 @@ async def create_gun(gun: GunCreate, session: AsyncSession = Depends(get_async_s
 
 
 @router.get("/guns/category/{category_id}", response_model=List[GunRead])
-async def get_guns_by_category(category_id: int, session: AsyncSession = Depends(get_async_session), page: int = 1, page_size: int = 10):
+async def get_guns_by_category(category_id: int, session: AsyncSession = Depends(get_async_session), current_user: User=Depends(get_current_user), page: int = 1, page_size: int = 10):
     gun_repository = GunRepository(session)
 
     guns_by_category = await gun_repository.get_guns_by_category(category_id)

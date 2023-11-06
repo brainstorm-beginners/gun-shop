@@ -15,6 +15,10 @@ fastapi = {extras = ["all"], version = "^0.103.2"}
 asyncpg = "^0.28.0"
 cryptography = "^41.0.4"
 fastapi-filter = "^1.0.0"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+passlib = "^1.7.4"
+bcrypt = "^4.0.1"
+middleware = "^1.2.3"
 
 
 [build-system]

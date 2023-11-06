@@ -1,0 +1,51 @@
+body {
+    width: auto;
+    height: auto;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+}
+
+.loginBox {
+    width: max-content;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 2px solid #3F3F3F;
+    padding: 10px 30px 30px 30px;
+    margin-top: 10px;
+}
+
+.dataLabel {
+    width: max-content;
+    color: grey;
+    margin-top: 20px;
+}
+
+.dataInut {
+    width: 200px;
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid #3F3F3F;
+    margin-top: 5px;
+    padding: 0px 0px 0px 5px;
+}
+
+.loginButton {
+    padding: 10px 25px;
+    width: max-content;
+    align-self: center;
+    margin-top: 30px;
+}
+
+.loginButton:hover {
+    cursor: pointer;
+}
+
+.authErrorText {
+    color: red;
+}

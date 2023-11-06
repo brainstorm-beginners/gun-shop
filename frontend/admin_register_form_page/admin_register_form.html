@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static_admin_form_page/admin_register_form.css">
+    <link rel="shortcut icon" href="/static_main_page/media/logoImg.png" type="image/x-icon">
+    <script src="/static_admin_form_page/admin_register_form.js"></script>
+    <title>ADMIN BRAKOSH</title>
+</head>
+<body>
+    <h1>BRAKOSH API ACCESS TOOL</h1>
+    <div class="loginBox">
+        <!-- Username -->
+        <label class="dataLabel" for="uname"><b>Username</b></label>
+        <input class="dataInut" type="text" placeholder="Enter Username" name="uname" required>
+        <!-- Password -->
+        <label class="dataLabel" for="psw"><b>Password</b></label>
+        <input class="dataInut" type="password" placeholder="Enter Password" name="psw" required>
+        <!-- Submit Button -->
+        <button class="loginButton" type="submit" onclick="adminUserLogin()">Login</button>
+        <label>
+    </div>
+    <h2 class="authErrorText" style="opacity: 0;">Authentication error. Login or password is invalid.</h2>
+</body>
+</html>

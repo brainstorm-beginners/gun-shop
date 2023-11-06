@@ -8,6 +8,28 @@ from sqlalchemy.sql.expression import and_
 from models.models import Gun
 
 
+class User(BaseModel):
+    username: str
+    email: str
+    hashed_password: str
+    is_admin: bool
+
+
+class UserRead(BaseModel):
+    username: str
+    email: str
+    is_admin: bool
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    username: Optional[str] = None
+
+
 class GunRead(BaseModel):
     name: str
     barrel_type: str
