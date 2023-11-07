@@ -207,4 +207,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
         let searchText = document.getElementById('searchBarTextBox').value;
         window.location.href = "/gun/search/" + searchText;
     }
+
+    window.openSomePage = function(page_url_to_open) {
+        window.location.href = page_url_to_open;
+    }
 });
