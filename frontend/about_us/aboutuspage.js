@@ -81,7 +81,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       document.querySelector("body").style.overflowY = "auto";
       document.querySelector("body").style.paddingRight = "0";
 
-      document.querySelector(".cartInfoText").innerHTML = `<b>Корзина:</b> 0 товаров - 0$`
+      document.querySelector(".cartInfoText").innerHTML = `<b>Корзина:</b> ${getCartQuantity()} товаров - ${getCartTotal()}$`
     }
 
     window.getCartQuantity = function() {
